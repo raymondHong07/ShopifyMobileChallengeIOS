@@ -45,20 +45,7 @@ final class ShopifyManager {
                             finalProduct.tags = self.getAllProductTags(for: product)
                             finalProduct.totalAvail = self.getTotalInventory(for: product)
                             
-                            if let images = product["images"] as? [[String: Any]] {
-                                
-                                if let image = images.first?["src"],
-                                let imageUrl = image as? String {
-                                    
-                                    ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (resultImage) in
-                                        
-                                        if let productImage = resultImage {
-                                            
-                                            finalProduct.productImage = productImage
-                                        }
-                                    })
-                                }
-                            }
+                            self.setProductImage(for: finalProduct, with: product)
                             
                             self.allProducts.append(finalProduct)
                         }
@@ -71,6 +58,25 @@ final class ShopifyManager {
             }
             
             completion(true)
+        }
+    }
+    
+    private func setProductImage(for finalProduct: Product, with product: [String: Any]) {
+        
+        // Download image url and set product image
+        if let images = product["images"] as? [[String: Any]] {
+            
+            if let image = images.first?["src"],
+            let imageUrl = image as? String {
+                
+                ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (resultImage) in
+                    
+                    if let productImage = resultImage {
+                        
+                        finalProduct.productImage = productImage
+                    }
+                })
+            }
         }
     }
     

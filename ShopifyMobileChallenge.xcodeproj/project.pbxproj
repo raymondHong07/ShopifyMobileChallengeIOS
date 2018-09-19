@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				C26B47B421503408008EE236 /* ViewControllers */,
-				C26B47B52150340F008EE236 /* Views */,
+				C26B47B52150340F008EE236 /* Cells */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -107,7 +107,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		C26B47B52150340F008EE236 /* Views */ = {
+		C26B47B52150340F008EE236 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				C26B47C321507C9F008EE236 /* ProductTableViewCell.swift */,
@@ -115,7 +115,7 @@
 				C26B47AC21503168008EE236 /* TagTableViewCell.swift */,
 				C26B47AD21503168008EE236 /* TagTableViewCell.xib */,
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C26B47CE2151F7B3008EE236 /* Logic */ = {
