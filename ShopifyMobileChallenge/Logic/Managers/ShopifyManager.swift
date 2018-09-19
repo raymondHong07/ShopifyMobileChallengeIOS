@@ -24,8 +24,10 @@ final class ShopifyManager {
     
     func getAllProducts(completion: @escaping (Bool) -> Void) {
         
+        // Set request url with reference to Request enum for easy modification
         let requestURL = String(format: "https://shopicruit.myshopify.com/admin/products.json?page=%d&access_token=%@", Request.pageNumber, Request.token)
         
+        // Make API request with url
         Alamofire.request(requestURL).responseJSON { response in
             
             switch response.result {
@@ -53,6 +55,8 @@ final class ShopifyManager {
                 }
         
             case .failure(let error):
+                // Error handling would be required in this case
+                // If developing for a real app
                 print(error)
                 
             }

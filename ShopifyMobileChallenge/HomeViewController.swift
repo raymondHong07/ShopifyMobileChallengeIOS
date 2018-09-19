@@ -18,12 +18,14 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Style button
         startButton.layer.borderWidth = 2.0
         startButton.layer.borderColor = UIColor.white.cgColor
         startButton.layer.cornerRadius = 10.0
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         
+        // Make request to get all products
         shopifyManager.getAllProducts { (success) in
             
             if success {
