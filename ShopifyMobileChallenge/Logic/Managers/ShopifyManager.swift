@@ -50,23 +50,15 @@ final class ShopifyManager {
                                 if let image = images.first?["src"],
                                 let imageUrl = image as? String {
                                     
-                                    ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (finalImage) in
+                                    ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (resultImage) in
                                         
-                                        if let test = finalImage {
+                                        if let productImage = resultImage {
                                             
-                                            finalProduct.productImage = test
+                                            finalProduct.productImage = productImage
                                         }
                                     })
                                 }
                             }
-                            
-//                            if let productImage = self.getProductImage(for: product) {
-//
-//                                finalProduct.productImage = productImage
-//                            }
-                            print(finalProduct.title)
-                            print(finalProduct.tags)
-                            print(finalProduct.totalAvail)
                             
                             self.allProducts.append(finalProduct)
                         }
@@ -81,26 +73,6 @@ final class ShopifyManager {
             completion(true)
         }
     }
-    
-//    private func getProductImage(for product: [String: Any]) -> UIImage? {
-//
-//        var productImage: UIImage = UIImage()
-//        if let images = product["images"] as? [[String: Any]] {
-//
-//            if let imageUrl = images.first?["src"] as? String {
-//
-//                ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (finalImage) in
-//
-//                    if let test = finalImage {
-//
-//                        productImage = test
-//                    }
-//                })
-//            }
-//        }
-//
-//        return productImage
-//    }
     
     private func getAllProductTags(for product: [String: Any]) -> [String] {
         
