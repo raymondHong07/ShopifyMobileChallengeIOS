@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EJS-iy-Vad">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="1is-0s-PpX">
+            <objects>
+                <navigationController id="EJS-iy-Vad" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AZT-Id-YG0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gbz-gB-m8g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jP5-fn-IwQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-444" y="95"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="ShopifyMobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DH4-DB-2Ym">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopify-ipo-blog-banner" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-12-RDP">
+                                <rect key="frame" x="26" y="205" width="323" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OzR-12-RDP" secondAttribute="height" multiplier="323:142" id="OAr-CS-XES"/>
+                                </constraints>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRP-Qi-Y9b">
+                                <rect key="frame" x="80" y="467" width="215" height="40"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <state key="normal" title="Begin Shopping">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.border.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LKQ-Pi-flT"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qH1-yR-fqp">
+                                <rect key="frame" x="178" y="324" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.47974246739999998" green="0.7109985352" blue="0.3590698242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7jl-6l-pHY" firstAttribute="trailing" secondItem="OzR-12-RDP" secondAttribute="trailing" constant="26" id="7Pr-Ft-h0p"/>
+                            <constraint firstItem="TRP-Qi-Y9b" firstAttribute="top" secondItem="qH1-yR-fqp" secondAttribute="bottom" constant="123" id="BO5-4G-vfd"/>
+                            <constraint firstItem="qH1-yR-fqp" firstAttribute="centerX" secondItem="OzR-12-RDP" secondAttribute="centerX" id="BOW-Op-tgG"/>
+                            <constraint firstItem="OzR-12-RDP" firstAttribute="leading" secondItem="7jl-6l-pHY" secondAttribute="leading" constant="26" id="den-00-Ipn"/>
+                            <constraint firstItem="7jl-6l-pHY" firstAttribute="bottom" secondItem="OzR-12-RDP" secondAttribute="bottom" constant="320" id="pQR-NN-Xyh"/>
+                            <constraint firstItem="7jl-6l-pHY" firstAttribute="bottom" secondItem="TRP-Qi-Y9b" secondAttribute="bottom" constant="160" id="q5I-j1-HTX"/>
+                            <constraint firstItem="TRP-Qi-Y9b" firstAttribute="leading" secondItem="7jl-6l-pHY" secondAttribute="leading" constant="80" id="vbL-9G-0ug"/>
+                            <constraint firstItem="7jl-6l-pHY" firstAttribute="trailing" secondItem="TRP-Qi-Y9b" secondAttribute="trailing" constant="80" id="xLb-6O-Ryl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7jl-6l-pHY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Main" id="QMy-GL-Lbb"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="qH1-yR-fqp" id="g1K-Zr-6qL"/>
+                        <outlet property="startButton" destination="TRP-Qi-Y9b" id="8Xl-0S-UZV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="372" y="94.902548725637189"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="shopify-ipo-blog-banner" width="405" height="170"/>
+    </resources>
+</document>
