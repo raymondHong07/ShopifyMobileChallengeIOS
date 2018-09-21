@@ -6,4 +6,4 @@
 
 | Screen 3  | Screen 4 |
 | ------------- | ------------- |
-| ![simulator screen shot - iphone x - 2018-09-19 at 10 58 44](https://user-images.githubusercontent.com/18080330/45763284-24e6e880-bbfe-11e8-97e1-c0f09fbb66a8.png) | ![simulator screen shot - iphone x - 2018-09-19 at 10 58 31](https://user-images.githubusercontent.com/18080330/45763314-2fa17d80-bbfe-11e8-9279-5232cf89973a.png)|
+| ![simulator screen shot - iphone x - 2018-09-19 at 10 58 44](https://user-images.githubusercontent.com/18080330/45763284-24e6e880-bbfe-11e8-97e1-c0f09fbb66a8.png) | ![simulator screen shot - iphone x - 2018-09-21 at 19 55 43](https://user-images.githubusercontent.com/18080330/45910601-79de5680-bdd8-11e8-8dd8-9bc7cc5a550f.png)|
