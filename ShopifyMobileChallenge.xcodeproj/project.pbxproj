@@ -103,6 +103,8 @@
 				C26B47A821503007008EE236 /* AllTagsViewController.xib */,
 				C26B47BE215073D9008EE236 /* ProductsViewController.swift */,
 				C26B47BF215073D9008EE236 /* ProductsViewController.xib */,
+				C2D8DD90214A18A700A52296 /* HomeViewController.swift */,
+				C2D8DD92214A18A700A52296 /* Main.storyboard */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -121,6 +123,7 @@
 		C26B47CE2151F7B3008EE236 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				C2FCAB9623CF52E200280729 /* Models */,
 				C26B47CF2151F7C1008EE236 /* Managers */,
 				C26B47B2215033EC008EE236 /* Extensions */,
 			);
@@ -160,13 +163,18 @@
 				C26B47CE2151F7B3008EE236 /* Logic */,
 				C26B47B321503401008EE236 /* Presentation */,
 				C2D8DD8E214A18A700A52296 /* AppDelegate.swift */,
-				C2D8DD90214A18A700A52296 /* HomeViewController.swift */,
-				C2E2798B214EF78800BBE8B9 /* Product.swift */,
-				C2D8DD92214A18A700A52296 /* Main.storyboard */,
 				C2D8DD95214A18A700A52296 /* Assets.xcassets */,
 				C2D8DD9A214A18A700A52296 /* Info.plist */,
 			);
 			path = ShopifyMobileChallenge;
+			sourceTree = "<group>";
+		};
+		C2FCAB9623CF52E200280729 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C2E2798B214EF78800BBE8B9 /* Product.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

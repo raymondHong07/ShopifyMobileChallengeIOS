@@ -13,15 +13,22 @@ final class HomeViewController: UIViewController {
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    private enum ButtonStyle {
+        
+        static let borderWidth: CGFloat = 2.0
+        static let borderColor = UIColor.white.cgColor
+        static let cornerRadius: CGFloat = 10
+    }
+    
     let shopifyManager = ShopifyManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Style button
-        startButton.layer.borderWidth = 2.0
-        startButton.layer.borderColor = UIColor.white.cgColor
-        startButton.layer.cornerRadius = 10.0
+        startButton.layer.borderWidth = ButtonStyle.borderWidth
+        startButton.layer.borderColor = ButtonStyle.borderColor
+        startButton.layer.cornerRadius = ButtonStyle.cornerRadius
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         

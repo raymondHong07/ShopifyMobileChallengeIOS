@@ -16,6 +16,7 @@ final class ShopifyManager {
         
         static let pageNumber = 1
         static let token = "c32313df0d0ef512ca64d5b336a0d7c6"
+        static let url = "https://shopicruit.myshopify.com/admin/products.json?page=%d&access_token=%@"
     }
     
     static let sharedInstance = ShopifyManager()
@@ -25,7 +26,9 @@ final class ShopifyManager {
     func getAllProducts(completion: @escaping (Bool) -> Void) {
         
         // Set request url with reference to Request enum for easy modification
-        let requestURL = String(format: "https://shopicruit.myshopify.com/admin/products.json?page=%d&access_token=%@", Request.pageNumber, Request.token)
+        let requestURL = String(format: Request.url,
+                                Request.pageNumber,
+                                Request.token)
         
         // Make API request with url
         Alamofire.request(requestURL).responseJSON { response in
