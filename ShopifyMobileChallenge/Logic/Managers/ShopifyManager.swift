@@ -7,8 +7,25 @@
 //
 
 import UIKit
-import Alamofire
 
+struct Products: Codable {
+    
+    var products: [Product]
+    
+    struct Product: Codable {
+        var title: String?
+        var vendor: String?
+        var tags: String?
+        var variants: [Variant]
+        var image: Image
+    }
+}
+struct Variant: Codable {
+    var inventory_quantity: Int?
+}
+struct Image: Codable {
+    var src: String?
+}
 
 final class ShopifyManager {
     
@@ -20,110 +37,61 @@ final class ShopifyManager {
     }
     
     static let sharedInstance = ShopifyManager()
-    var allProducts: [Product] = []
+    var allProducts: [Products.Product] = []
     var allTags: [String] = []
     
     func getAllProducts(completion: @escaping (Bool) -> Void) {
         
         // Set request url with reference to Request enum for easy modification
-        let requestURL = String(format: Request.url,
-                                Request.pageNumber,
-                                Request.token)
+        let requestUrlString = String(format: Request.url,
+                                      Request.pageNumber,
+                                      Request.token)
         
-        // Make API request with url
-        Alamofire.request(requestURL).responseJSON { response in
+        guard let url = URL(string: requestUrlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
             
-            switch response.result {
+            if err != nil {
                 
-            case .success:
-                if let json = response.result.value as? [String: Any] {
-                    
-                    if let products = json["products"] as? [[String: Any]] {
-                        
-                        for product in products {
-                            
-                            let finalProduct: Product = Product()
-                            
-                            // Get all product info
-                            finalProduct.title = product["title"] as? String ?? ""
-                            finalProduct.vendor = product["vendor"] as? String ?? ""
-                            finalProduct.tags = self.getAllProductTags(for: product)
-                            finalProduct.totalAvail = self.getTotalInventory(for: product)
-                            
-                            self.setProductImage(for: finalProduct, with: product)
-                            
-                            self.allProducts.append(finalProduct)
-                        }
+                completion(false)
+                
+            } else {
+                
+                let decoder = JSONDecoder()
+                guard let data = data else { return }
+                
+                do {
+                    let allProductData = try decoder.decode(Products.self, from: data)
+                    for product in allProductData.products {
+                        self.getAllUniqueProductTags(from: product)
+                        self.allProducts.append(product)
                     }
+                } catch {
+                    //Failed to decode JSON
+                    completion(false)
                 }
-        
-            case .failure(let error):
-                // Error handling would be required in this case
-                // If developing for a real app
-                print(error)
-                
             }
-            
-            completion(true)
-        }
+        }.resume()
+        
+        completion(true)
     }
     
-    private func setProductImage(for finalProduct: Product, with product: [String: Any]) {
-        
-        // Download image url and set product image
-        if let images = product["images"] as? [[String: Any]] {
-            
-            if let image = images.first?["src"],
-            let imageUrl = image as? String {
-                
-                ImageManager.shared.imageForUrl(urlString: imageUrl, completionHandler: { (resultImage) in
-                    
-                    if let productImage = resultImage {
-                        
-                        finalProduct.productImage = productImage
-                    }
-                })
-            }
-        }
-    }
-    
-    private func getAllProductTags(for product: [String: Any]) -> [String] {
-        
-        var allProductTags: [String] = []
-        
-        // Get product tags and add unique tags to array
-        if let tags = product["tags"] as? String {
-            
-            allProductTags = tags.components(separatedBy: ", ")
-            
+    private func getAllUniqueProductTags(from product: Products.Product) {
+
+        // add unique tags to array
+        if let tags = product.tags {
+
+            let allProductTags = tags.components(separatedBy: ", ")
+
             for tag in allProductTags {
                 
                 if !self.allTags.contains(tag) {
-                    
+
                     self.allTags.append(tag)
                 }
             }
         }
         
-        return allProductTags
-    }
-    
-    private func getTotalInventory(for product: [String: Any]) -> Int {
-        
-        var totalInventory = 0
-        
-        // Get sum of total inventory across all variants
-        if let variants = product["variants"] as? [[String: Any]] {
-            
-            for variant in variants {
-                
-                if let inventory = variant["inventory_quantity"] as? Int {
-                    
-                    totalInventory += inventory
-                }
-            }
-        }
-        
-        return totalInventory
+        allTags.sort()
     }
 }

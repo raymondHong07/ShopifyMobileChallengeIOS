@@ -23,16 +23,34 @@ final class HomeViewController: UIViewController {
     let shopifyManager = ShopifyManager.sharedInstance
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        // Style button
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        styleStartButton()
+        getAllProducts()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func styleStartButton() {
+        
         startButton.layer.borderWidth = ButtonStyle.borderWidth
         startButton.layer.borderColor = ButtonStyle.borderColor
         startButton.layer.cornerRadius = ButtonStyle.cornerRadius
+    }
+    
+    @IBAction func didTapStartButton(_ sender: Any) {
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.pushViewController(AllTagsViewController(), animated: true)
+    }
+    
+    private func getAllProducts() {
         
-        // Make request to get all products
         shopifyManager.getAllProducts { (success) in
             
             if success {
@@ -45,17 +63,5 @@ final class HomeViewController: UIViewController {
             }
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    @IBAction func didTapStartButton(_ sender: Any) {
-        
-        navigationController?.pushViewController(AllTagsViewController(), animated: true)
-    }
-    
 }
 

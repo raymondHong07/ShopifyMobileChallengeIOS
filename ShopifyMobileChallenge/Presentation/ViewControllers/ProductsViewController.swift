@@ -11,7 +11,7 @@ import UIKit
 class ProductsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    private var filteredProducts: [Product] = []
+    private var filteredProducts: [Products.Product] = []
     private let shopifyManager = ShopifyManager.sharedInstance
     
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class ProductsViewController: UIViewController {
         // Sort products by filter tag
         for product in shopifyManager.allProducts {
             
-            if product.tags.contains(tag) {
+            if ProductsHelper.does(product: product, contain: tag) {
                 
                 filteredProducts.append(product)
             }
@@ -60,11 +60,7 @@ class ProductsViewController: UIViewController {
     }
 }
 
-extension ProductsViewController: UITableViewDelegate {
-    
-}
-
-extension ProductsViewController: UITableViewDataSource {
+extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -84,15 +80,7 @@ extension ProductsViewController: UITableViewDataSource {
                 fatalError("cellForRowAt error")
         }
         
-        let product = filteredProducts[indexPath.row]
-        
-        // Configure cell with product info
-        cell.title = product.title
-        cell.vendor = product.vendor
-        cell.totalQuantity = product.totalAvail
-        cell.productImage = product.productImage
-        
-        cell.selectionStyle = .none
+        cell.configure(with: filteredProducts[indexPath.row])
         
         return cell
     }

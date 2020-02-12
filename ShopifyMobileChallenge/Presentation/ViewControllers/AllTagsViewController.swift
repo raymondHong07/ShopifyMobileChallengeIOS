@@ -28,14 +28,11 @@ final class AllTagsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.contentInset.bottom = 24
     }
 }
 
-extension AllTagsViewController: UITableViewDelegate {
-    
-}
-
-extension AllTagsViewController: UITableViewDataSource {
+extension AllTagsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
