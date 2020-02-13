@@ -12,7 +12,6 @@ class ProductsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     private var filteredProducts: [Products.Product] = []
-    private let shopifyManager = ShopifyManager.sharedInstance
     
     override func viewDidLoad() {
         
@@ -40,7 +39,7 @@ class ProductsViewController: UIViewController {
     private func filterProductsBy(_ tag: String) {
         
         // Sort products by filter tag
-        for product in shopifyManager.allProducts {
+        for product in ShopifyManager.sharedInstance.allProducts {
             
             if ProductsHelper.does(product: product, contain: tag) {
                 

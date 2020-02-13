@@ -20,8 +20,6 @@ final class HomeViewController: UIViewController {
         static let cornerRadius: CGFloat = 10
     }
     
-    let shopifyManager = ShopifyManager.sharedInstance
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -51,7 +49,7 @@ final class HomeViewController: UIViewController {
     
     private func getAllProducts() {
         
-        shopifyManager.getAllProducts { (success) in
+        ShopifyManager.sharedInstance.getAllProducts { (success) in
             
             if success {
                 

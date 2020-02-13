@@ -18,18 +18,10 @@ class ImageManager {
     static let shared: ImageManager = {
         
         let instance = ImageManager()
-        instance.setUp()
-        
         return instance
     }()
     
-    private func setUp() {
-        
-    }
-    
-    func imageForUrl(
-        urlString: String,
-        completionHandler:@escaping (_ image: UIImage?) -> Void) {
+    func imageForUrl(urlString: String, completionHandler:@escaping (_ image: UIImage?) -> Void) {
         
         guard !urlString.isEmpty else {
             

@@ -63,9 +63,11 @@ final class ShopifyManager {
                 do {
                     let allProductData = try decoder.decode(Products.self, from: data)
                     for product in allProductData.products {
+                        
                         self.getAllUniqueProductTags(from: product)
                         self.allProducts.append(product)
                     }
+                    self.allTags.sort()
                 } catch {
                     //Failed to decode JSON
                     completion(false)
@@ -82,16 +84,13 @@ final class ShopifyManager {
         if let tags = product.tags {
 
             let allProductTags = tags.components(separatedBy: ", ")
-
             for tag in allProductTags {
                 
                 if !self.allTags.contains(tag) {
-
+                    
                     self.allTags.append(tag)
                 }
             }
         }
-        
-        allTags.sort()
     }
 }
