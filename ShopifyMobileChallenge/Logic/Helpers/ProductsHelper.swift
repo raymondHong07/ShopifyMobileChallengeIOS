@@ -15,7 +15,7 @@ final class ProductsHelper {
 
         var productTags: [String] = []
 
-        // Get product tags and add unique tags to array
+        // Get product tags
         if let tags = product.tags {
             
             productTags = tags.components(separatedBy: ", ")
